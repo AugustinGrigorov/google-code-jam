@@ -3,16 +3,20 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strconv"
 	"strings"
 )
 
+var out io.Writer = os.Stdout
+var in io.Reader = os.Stdin
+
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	scanner := bufio.NewScanner(in)
 	lines := mustScanInt(scanner)
 	for i := 0; i < lines; i++ {
-		fmt.Printf("Case #%v: %v\n", i+1, parenthify(mustScanIntArray(scanner)))
+		fmt.Fprintf(out, "Case #%v: %v\n", i+1, parenthify(mustScanIntArray(scanner)))
 	}
 }
 

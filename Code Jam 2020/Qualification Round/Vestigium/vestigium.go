@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strconv"
 	"strings"
@@ -10,9 +11,12 @@ import (
 
 type matrix [][]int
 
+var out io.Writer = os.Stdout
+var in io.Reader = os.Stdin
+
 func main() {
 	// Parse input
-	scanner := bufio.NewScanner(os.Stdin)
+	scanner := bufio.NewScanner(in)
 	testCases := mustScanInt(scanner)
 	var matrices []matrix
 	for i := 0; i < testCases; i++ {
@@ -54,7 +58,7 @@ func main() {
 				}
 			}
 		}
-		fmt.Printf("Case #%v: %v %v %v\n", testCase+1, trace, rowsWithRepeatedElements, columnsWithRepeatedElements)
+		fmt.Fprintf(out, "Case #%v: %v %v %v\n", testCase+1, trace, rowsWithRepeatedElements, columnsWithRepeatedElements)
 	}
 }
 

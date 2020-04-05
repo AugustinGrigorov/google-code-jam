@@ -3,13 +3,17 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strconv"
 	"strings"
 )
 
+var out io.Writer = os.Stdout
+var in io.Reader = os.Stdin
+
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	scanner := bufio.NewScanner(in)
 	testCases := mustScanInt(scanner)
 	for i := 0; i < testCases; i++ {
 		numberOfActivites := mustScanInt(scanner)
@@ -17,7 +21,7 @@ func main() {
 		for j := 0; j < numberOfActivites; j++ {
 			activities[j] = mustScanActivity(scanner)
 		}
-		fmt.Printf("Case #%v: %v\n", i+1, computeSchedule(activities))
+		fmt.Fprintf(out, "Case #%v: %v\n", i+1, computeSchedule(activities))
 	}
 }
 
